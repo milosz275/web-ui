@@ -8,3 +8,4 @@ web-ui.js
 .vscode
 .vs
 .idea
+*.bak

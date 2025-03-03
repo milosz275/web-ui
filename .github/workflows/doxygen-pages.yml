@@ -89,7 +89,7 @@ jobs:
           cp src/index.html docs/demo/
           cp build/web-ui.js docs/demo/
           cp build/web-ui.wasm docs/demo/
-          cp assets/* docs/demo/
+          # cp assets/* docs/demo/
 
       - name: Upload to GitHub Pages
         uses: actions/upload-pages-artifact@v3

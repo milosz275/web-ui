@@ -3,8 +3,12 @@ name: "CodeQL"
 on:
   push:
     branches: [ "main" ]
+    paths-ignore:
+      - 'emsdk/**'
   pull_request:
     branches: [ "main" ]
+    paths-ignore:
+      - 'emsdk/**'
   schedule:
     - cron: '17 19 * * 6'
 

@@ -39,6 +39,11 @@ jobs:
         sudo apt-get install -y libfreetype6-dev
       shell: bash
 
+    - name: Install GLM
+      run: |
+        sudo apt-get install -y libglm-dev
+      shell: bash
+
     - name: Build project
       run: |
         source emsdk/emsdk_env.sh

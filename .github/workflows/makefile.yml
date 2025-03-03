@@ -1,0 +1,47 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Initialize submodules
+      run: |
+        git submodule update --init --recursive
+      shell: bash
+
+    - name: Set up Emscripten
+      run: |
+        git clone https://github.com/emscripten-core/emsdk.git
+        cd emsdk
+        ./emsdk install latest
+        ./emsdk activate latest
+        source ./emsdk_env.sh
+      shell: bash
+
+    - name: Install FreeGLUT
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y freeglut3-dev
+      shell: bash
+
+    - name: Install FreeType2
+      run: |
+        sudo apt-get install -y libfreetype6-dev
+      shell: bash
+
+    - name: Build project
+      run: |
+        source emsdk/emsdk_env.sh
+        cd backend
+        make
+      shell: bash

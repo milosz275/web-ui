@@ -65,7 +65,6 @@ jobs:
       shell: bash
       run: |
         source emsdk/emsdk_env.sh
-        cd backend
         make
 
     - name: Perform CodeQL Analysis

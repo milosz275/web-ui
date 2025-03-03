@@ -66,7 +66,6 @@ jobs:
       - name: Build WebAssembly (WASM)
         run: |
           source ./emsdk/emsdk_env.sh
-          cd backend
           make
 
       - name: Setup Pages
@@ -75,9 +74,9 @@ jobs:
       - name: Prepare Deployment Artifacts
         run: |
           mkdir -p docs/demo
-          cp backend/src/index.html docs/demo/
-          cp backend/build/web-ui.js docs/demo/
-          cp backend/build/web-ui.wasm docs/demo/
+          cp src/index.html docs/demo/
+          cp build/web-ui.js docs/demo/
+          cp build/web-ui.wasm docs/demo/
           cp assets/* docs/demo/
 
       - name: Upload to GitHub Pages

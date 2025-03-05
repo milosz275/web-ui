@@ -1,7 +1,7 @@
 EMCC = emcc
 GCC = g++
 
-SRC_WEB = src/app.cpp src/main.cpp src/renderer.cpp src/background.cpp
+SRC_WEB = src/app.cpp src/main.cpp src/renderer.cpp src/background.cpp src/text.cpp
 OUT_WEB = build/web-ui.js
 
 COMMON_CFLAGS = -std=c++17 -Wall -Wextra -pedantic -O3

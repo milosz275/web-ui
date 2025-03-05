@@ -14,7 +14,7 @@ namespace web_ui
         static GLint u_scale_location;
         static int canvas_width;
         static int canvas_height;
-
+    
     public:
         static void init();
         static void update_scale();

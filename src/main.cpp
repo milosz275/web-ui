@@ -7,6 +7,7 @@
 #include "app.h"
 #include "renderer.h"
 #include "background.h"
+#include "text.h"
 
 using namespace std;
 
@@ -25,6 +26,13 @@ void render_loop()
     renderer::draw_circle({-0.5f, -0.5f}, 0.25f, {1, 0, 1});
     renderer::draw_circle({-0.75f, -0.75f}, 0.05f, {1, 0, 0}); // left
     renderer::draw_circle({0.75f, -0.75f}, 0.05f, {1, 0, 0}); // right
+    text::clear_text_canvas();
+    text::draw_text();
+    text::draw_text(0.0f, 0.0f, "WebGL", "20px Arial", "black");
+    text::draw_text(-0.5f, 0.5f, "1", "12px Arial", "blue");
+    text::draw_text(0.5f, 0.5f, "2", "12px Arial", "blue");
+    text::draw_text(0.5f, -0.5f, "3", "12px Arial", "blue");
+    text::draw_text(-0.5f, -0.5f, "4", "12px Arial", "blue");
 }
 
 void deinit()
@@ -34,6 +42,8 @@ void deinit()
 
 int main()
 {
+    text::setup_canvas();
+
     EmscriptenWebGLContextAttributes attr;
     emscripten_webgl_init_context_attributes(&attr);
     attr.alpha = 0;
@@ -42,7 +52,7 @@ int main()
     attr.antialias = 1;
     attr.majorVersion = 2;
 
-    EMSCRIPTEN_WEBGL_CONTEXT_HANDLE context = emscripten_webgl_create_context("#canvas", &attr);
+    EMSCRIPTEN_WEBGL_CONTEXT_HANDLE context = emscripten_webgl_create_context("#webglCanvas", &attr);
     if (context <= 0)
     {
         cerr << "Failed to create WebGL context!" << '\n';

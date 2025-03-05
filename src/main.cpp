@@ -5,7 +5,6 @@
 #include <GLES3/gl3.h>
 
 #include "app.h"
-#include "text.h"
 #include "renderer.h"
 #include "background.h"
 
@@ -16,6 +15,7 @@ using namespace web_ui;
 void render_loop()
 {
     background::draw_background();
+    renderer::update_scale();
     renderer::draw_rectangle({-0.5f, -0.5f}, {1, 1}, {0, 1, 0});
     renderer::draw_rectangle({0.5f, 0.5f}, {1, 1}, {0.5f, 0.5f, 1});
     renderer::draw_line({0, 0}, {1, 1}, {1, 0, 0});
@@ -25,7 +25,11 @@ void render_loop()
     renderer::draw_circle({-0.5f, -0.5f}, 0.25f, {1, 0, 1});
     renderer::draw_circle({-0.75f, -0.75f}, 0.05f, {1, 0, 0}); // left
     renderer::draw_circle({0.75f, -0.75f}, 0.05f, {1, 0, 0}); // right
-    text::draw_text("Hello, World!", 0, 0);
+}
+
+void deinit()
+{
+    
 }
 
 int main()
@@ -49,6 +53,7 @@ int main()
 
     renderer::init();
     app::run(render_loop);
+    app::cleanup(deinit);
 
     return 0;
 }

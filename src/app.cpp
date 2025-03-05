@@ -17,4 +17,9 @@ namespace web_ui
         global_loop = loop;
         emscripten_set_main_loop(main_loop_wrapper, 0, 1);
     }
+
+    void app::cleanup(function<void()> clean)
+    {
+        clean();
+    }
 }

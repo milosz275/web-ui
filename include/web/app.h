@@ -10,5 +10,6 @@ namespace web_ui
     {
     public:
         static void run(std::function<void()> loop);
+        static void cleanup(std::function<void()> clean);
     };
 }

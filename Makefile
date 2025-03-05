@@ -1,7 +1,7 @@
 EMCC = emcc
 GCC = g++
 
-SRC_WEB = src/app.cpp src/main.cpp src/renderer.cpp src/text.cpp src/background.cpp
+SRC_WEB = src/app.cpp src/main.cpp src/renderer.cpp src/background.cpp
 OUT_WEB = build/web-ui.js
 
 COMMON_CFLAGS = -std=c++17 -Wall -Wextra -pedantic -O3
@@ -21,7 +21,6 @@ LDFLAGS = -s USE_WEBGL2=1 \
 	-s NO_EXIT_RUNTIME=1 \
 	-s WASM=1 \
 	-s USE_FREETYPE=1 \
-	-s EXPORTED_FUNCTIONS='["_main", "_FT_Init_FreeType", "_FT_Load_Char", "_FT_New_Face", "_FT_Set_Pixel_Sizes"]' \
 	--shell-file src/index.html
 
 all: web

@@ -42,11 +42,23 @@
             };
         }
 
+        // Function to resize the canvas
+        function resizeCanvas() {
+            var canvas = document.getElementById('canvas');
+            if (canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        }
+
         // Wait for the WASM module to load
         Module.onRuntimeInitialized = function () {
             var canvas = document.getElementById('canvas');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            if (!canvas) {
+                console.error('Canvas element not found');
+                return;
+            }
+            resizeCanvas();
             var gl = canvas.getContext('webgl2');
 
             if (!gl) {
@@ -55,20 +67,8 @@
             }
         }
 
-        function onResize() {
-            // Update the canvas size
-            var canvas = document.getElementById('canvas');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-
-            // Call the C++ function to update the scale
-            Module._update_canvas_scale();
-        }
-
-        window.addEventListener('resize', onResize);
-
-        // Call onResize initially to set the correct size and scale
-        onResize();
+        // Add event listener for window resize
+        window.addEventListener('resize', resizeCanvas);
     </script>
 </body>
 

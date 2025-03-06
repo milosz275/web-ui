@@ -14,10 +14,27 @@ using namespace std;
 
 void draw_house()
 {
+    // sun
     web_ui::background::draw_background();
-    web_ui::renderer::draw_circle({0.75f, 0.75f}, 0.200f, {1, 0.80f, 0}); // sun
-    web_ui::renderer::draw_circle({0.75f, 0.75f}, 0.175f, {1, 0.90f, 0}); // sun
-    web_ui::renderer::draw_circle({0.75f, 0.75f}, 0.150f, {1, 1.00f, 0}); // sun
+    int canvas_width = EM_ASM_INT({ return getCanvasSize().width; }, 0);
+    int canvas_height = EM_ASM_INT({ return getCanvasSize().height; }, 0);
+
+    float radius = 0.2f;
+    float radius_x = radius * (static_cast<float>(canvas_height) / canvas_width);
+    float radius_y = radius;
+    web_ui::renderer::draw_ellipse({0.75f, 0.75f}, radius_x, radius_y, {1, 0.80f, 0});
+
+    radius = 0.175f;
+    radius_x = radius * (static_cast<float>(canvas_height) / canvas_width);
+    radius_y = radius;
+    web_ui::renderer::draw_ellipse({0.75f, 0.75f}, radius_x, radius_y, {1, 0.90f, 0});
+
+    radius = 0.15f;
+    radius_x = radius * (static_cast<float>(canvas_height) / canvas_width);
+    radius_y = radius;
+    web_ui::renderer::draw_ellipse({0.75f, 0.75f}, radius_x, radius_y, {1, 1.00f, 0});
+
+    // house
     web_ui::renderer::draw_rectangle({-0.5f, -0.5f}, {0.5, 0.25f}, {0.8f, 0.5f, 0.2f}); // house base
     web_ui::renderer::draw_triangle({-0.75f, 0.25f}, {0.75f, 0.25f}, {0.0f, 0.75f}, {0.6f, 0.3f, 0.1f}); // roof
     web_ui::renderer::draw_rectangle({-0.1f, -0.5f}, {0.1f, 0.0f}, {0.4f, 0.2f, 0.1f}); // door

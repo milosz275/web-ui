@@ -60,5 +60,14 @@ namespace web_ui
          * @param color Color vector (R, G, B)
          */
         static void draw_circle(glm::vec2 center, float radius, glm::vec3 color);
+
+        /**
+         * @brief Draws an ellipse with the specified center, radii, and color.
+         * @param center Center point of the ellipse (x, y)
+         * @param radius_x Radius of the ellipse along the x-axis
+         * @param radius_y Radius of the ellipse along the y-axis
+         * @param color Color vector (R, G, B)
+         */
+        static void draw_ellipse(glm::vec2 center, float radius_x, float radius_y, glm::vec3 color);
     };
 }

@@ -18,7 +18,7 @@ namespace web_ui
         static void init();
         static void draw_line(glm::vec2 p1, glm::vec2 p2, glm::vec3 color);
         static void draw_triangle(glm::vec2 p1, glm::vec2 p2, glm::vec2 p3, glm::vec3 color);
-        static void draw_rectangle(glm::vec2 pos, glm::vec2 size, glm::vec3 color);
+        static void draw_rectangle(glm::vec2 p1, glm::vec2 p2, glm::vec3 color);
         static void draw_circle(glm::vec2 center, float radius, glm::vec3 color);
     };
 }

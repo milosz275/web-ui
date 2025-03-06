@@ -5,13 +5,13 @@
 #include <emscripten.h>
 #include <emscripten/html5.h>
 #include <GLES3/gl3.h>
+#include <glm/glm.hpp>
 
 using namespace std;
 
 namespace web_ui
 {
     GLint renderer::program;
-    GLint renderer::u_scale_location;
     int renderer::canvas_width;
     int renderer::canvas_height;
 
@@ -78,10 +78,9 @@ namespace web_ui
             attribute vec4 position;
             attribute vec4 color;
             varying vec4 vColor;
-            uniform vec2 uScale;
             void main()
             {
-                gl_Position = vec4(position.xy * uScale, position.zw);
+                gl_Position = vec4(position.xy, position.zw);
                 vColor = color;
             }
         )";
@@ -105,26 +104,6 @@ namespace web_ui
         glUseProgram(program);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-        u_scale_location = glGetUniformLocation(program, "uScale");
-        update_scale();
-    }
-
-    void renderer::update_scale()
-    {
-        canvas_width = EM_ASM_INT({ return getCanvasSize().width; }, 0);
-        canvas_height = EM_ASM_INT({ return getCanvasSize().height; }, 0);
-        float aspect_ratio = static_cast<float>(canvas_width) / static_cast<float>(canvas_height);
-        float scale_x = 1.0f;
-        float scale_y = 1.0f;
-
-        if (aspect_ratio > 1.0f)
-            scale_x = 1.0f / aspect_ratio;
-        else
-            scale_y = aspect_ratio;
-        
-        glUseProgram(program);
-        glUniform2f(u_scale_location, scale_x, scale_y);
     }
 
     void renderer::draw_line(glm::vec2 p1, glm::vec2 p2, glm::vec3 color)
@@ -221,10 +200,5 @@ namespace web_ui
 
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
-    }
-
-    extern "C" void EMSCRIPTEN_KEEPALIVE update_canvas_scale()
-    {
-        renderer::update_scale();
     }
 }

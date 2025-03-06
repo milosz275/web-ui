@@ -11,13 +11,11 @@ namespace web_ui
     {
     private:
         static GLint program;
-        static GLint u_scale_location;
         static int canvas_width;
         static int canvas_height;
     
     public:
         static void init();
-        static void update_scale();
         static void draw_line(glm::vec2 p1, glm::vec2 p2, glm::vec3 color);
         static void draw_triangle(glm::vec2 p1, glm::vec2 p2, glm::vec2 p3, glm::vec3 color);
         static void draw_rectangle(glm::vec2 pos, glm::vec2 size, glm::vec3 color);

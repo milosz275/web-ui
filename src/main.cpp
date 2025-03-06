@@ -13,31 +13,25 @@ using namespace std;
 
 void render_loop()
 {
+    // drawing
     web_ui::background::draw_background();
-    web_ui::renderer::draw_rectangle({-0.5f, -0.5f}, {1, 1}, {0, 1, 0});
-    web_ui::renderer::draw_rectangle({0.5f, 0.5f}, {1, 1}, {0.5f, 0.5f, 1});
-    web_ui::renderer::draw_line({0, 0}, {1, 1}, {1, 0, 0});
-    web_ui::renderer::draw_triangle({-0.5f, 0.5f}, {0.5f, 0.5f}, {0, 1}, {0, 0, 1});
-    web_ui::renderer::draw_circle({0, 0}, 0.1f, {1, 1, 0});
-    web_ui::renderer::draw_circle({0.5f, 0}, 0.5f, {0, 1, 1});
-    web_ui::renderer::draw_circle({-0.5f, -0.5f}, 0.25f, {1, 0, 1});
-    web_ui::renderer::draw_circle({-0.75f, -0.75f}, 0.05f, {1, 0, 0}); // left
-    web_ui::renderer::draw_circle({0.75f, -0.75f}, 0.05f, {1, 0, 0}); // right
+    web_ui::renderer::draw_circle({0.75f, 0.75f}, 0.200f, {1, 0.80f, 0}); // sun
+    web_ui::renderer::draw_circle({0.75f, 0.75f}, 0.175f, {1, 0.90f, 0}); // sun
+    web_ui::renderer::draw_circle({0.75f, 0.75f}, 0.150f, {1, 1.00f, 0}); // sun
+    web_ui::renderer::draw_rectangle({-0.5f, -0.5f}, {0.5, 0.25f}, {0.8f, 0.5f, 0.2f}); // house base
+    web_ui::renderer::draw_triangle({-0.75f, 0.25f}, {0.75f, 0.25f}, {0.0f, 0.75f}, {0.6f, 0.3f, 0.1f}); // roof
+    web_ui::renderer::draw_rectangle({-0.1f, -0.5f}, {0.1f, 0.0f}, {0.4f, 0.2f, 0.1f}); // door
+    web_ui::renderer::draw_rectangle({-0.4f, -0.2f}, {-0.2f, 0.0f}, {0.7f, 0.9f, 1.0f}); // left window
+    web_ui::renderer::draw_rectangle({0.2f, -0.2f}, {0.4f, 0.0f}, {0.7f, 0.9f, 1.0f}); // right window
+    web_ui::renderer::draw_line({-0.4f, -0.1f}, {-0.2f, -0.1f}, {0, 0, 0}); // left window horizontal window pane
+    web_ui::renderer::draw_line({-0.3f, -0.2f}, {-0.3f, 0.0f}, {0, 0, 0}); // left window vertical window pane
+    web_ui::renderer::draw_line({0.2f, -0.1f}, {0.4f, -0.1f}, {0, 0, 0}); // right window horizontal window pane
+    web_ui::renderer::draw_line({0.3f, -0.2f}, {0.3f, 0.0f}, {0, 0, 0}); // right window vertical window pane
+
+    // text
     web_ui::text::clear_text_canvas();
     web_ui::text::draw_text_absolute();
-    web_ui::text::draw_text({0.0f, 0.0f}, "WebGL", "20px serif", "black");
-    web_ui::text::draw_text({-0.5f, 0.5f}, "1", "12px serif", "green");
-    web_ui::text::draw_text({0.5f, 0.5f}, "2", "12px serif", "green");
-    web_ui::text::draw_text({0.5f, -0.5f}, "3", "12px serif", "green");
-    web_ui::text::draw_text({-0.5f, -0.5f}, "4", "12px serif", "green");
-    web_ui::text::draw_text({-0.75f, -0.75f}, "red", "18x serif", "white"); // left
-    web_ui::text::draw_text({0.75f, -0.75f}, "red", "15px serif", "white"); // right
-    web_ui::text::draw_text({-0.75f, 0.75f}, "a", "12px serif", "blue");
-    web_ui::text::draw_text({-0.75f, 0.70f}, "b", "12px serif", "blue");
-    web_ui::text::draw_text({-0.75f, 0.65f}, "c", "12px serif", "blue");
-    web_ui::text::draw_text({-0.75f, 0.60f}, "d", "12px serif", "blue");
-    web_ui::text::draw_text({-0.75f, 0.55f}, "e", "12px serif", "blue");
-    web_ui::text::draw_text({-0.75f, 0.50f}, "f", "12px serif", "blue");
+    web_ui::text::draw_text({-0.03f, -0.75f}, "House", "20px serif", "brown");
 }
 
 int main()

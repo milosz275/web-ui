@@ -48,6 +48,12 @@ jobs:
         source ./emsdk_env.sh
       shell: bash
 
+    - name: Install ccache
+      run: |
+          sudo apt-get update
+          sudo apt-get install -y ccache
+      shell: bash
+
     - name: Install FreeGLUT
       run: |
         sudo apt-get update

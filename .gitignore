@@ -9,3 +9,4 @@ web-ui.js
 .vs
 .idea
 *.bak
+build

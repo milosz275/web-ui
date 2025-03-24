@@ -9,6 +9,8 @@
 #include "renderer.h"
 #include "background.h"
 #include "text.h"
+#include "canvas.h"
+#include "notifications.h"
 
 using namespace std;
 
@@ -64,8 +66,14 @@ void draw_sierpinski_triangle(glm::vec2 p1, glm::vec2 p2, glm::vec2 p3, int dept
 
 void render_loop()
 {
+    // setup
+    web_ui::canvas::update_canvas_size();
+    web_ui::background::draw_background();
+
+    // house
     draw_house();
 
+    //// sierpinski triangle
     // glm::vec2 p1 = glm::vec2(-0.5f, -0.5f);
     // glm::vec2 p2 = glm::vec2(0.5f, -0.5f);
     // glm::vec2 p3 = glm::vec2(0.0f, 0.5f);
@@ -75,12 +83,11 @@ void render_loop()
     web_ui::text::clear_text_canvas();
     web_ui::text::draw_text_absolute();
     web_ui::text::draw_text({-0.03f, -0.75f}, "House", "20px serif", "brown");
+    web_ui::notifications::draw();
 }
 
 int main()
 {
-    web_ui::text::setup_canvas();
-
     EmscriptenWebGLContextAttributes attr;
     emscripten_webgl_init_context_attributes(&attr);
     attr.alpha = 0;
@@ -98,6 +105,7 @@ int main()
 
     emscripten_webgl_make_context_current(context);
 
+    web_ui::text::setup_canvas();
     web_ui::renderer::init();
     web_ui::app::run(render_loop);
 
